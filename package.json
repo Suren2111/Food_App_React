@@ -1,0 +1,29 @@
+{
+  "name": "food_app_react",
+  "version": "1.0.0",
+  "description": "This is React Project",
+  "scripts": {
+    "test": "jest",
+    "dev": "npx parcel index.html",
+    "prod": "npx parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Suren2111/Food_App_React.git"
+  },
+  "author": "Suren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Suren2111/Food_App_React/issues"
+  },
+  "homepage": "https://github.com/Suren2111/Food_App_React#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "reactdom": "^2.0.0"
+  }
+}
