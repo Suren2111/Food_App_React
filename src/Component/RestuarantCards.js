@@ -1,12 +1,11 @@
-import { CDN_URL } from "../utils/constants";
+import * as obj_harcoded from "../utils/constants";
 
 const RestuarantCards=(props)=>{
-    const {rescard}=props
-    console.log(rescard)
+    const {rescard}=props;
     const{name, costForTwo,cuisines,cloudinaryImageId, avgRating}= rescard?.info
     return(
             <div className="res-card">
-              <img className="card-logo" src={CDN_URL+cloudinaryImageId} alt="Restuarant Image" />
+              <img className="card-logo" src={obj_harcoded.CDN_URL+cloudinaryImageId} alt="Restuarant Image" />
               <h2>{name}</h2>
               <h3>{costForTwo}</h3>
               <h4>{cuisines.join(",")}</h4>

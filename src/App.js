@@ -7,11 +7,13 @@ import Footer from "./Component/Footer";
 
 const Applayout=() =>{
    return (
+    <>
        <div>
         <Header />
         <Body />
         <Footer />
        </div>
+       </>
    )
 }
 
