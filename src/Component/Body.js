@@ -13,12 +13,7 @@ const Body=() =>{
         console.log(jsondata.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
         setRestuarantlist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
-    if(restuarantlist.length==0){
-        return(
-            <Shimmer/>
-        )
-    }
-    return(
+    return restuarantlist.length==0 ? <Shimmer/> :(
         <div className="body-container">
            <div className="filter">
                <button className="filter_btn"onClick={()=>{
