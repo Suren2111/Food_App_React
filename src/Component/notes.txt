@@ -1,0 +1,13 @@
+Virtual DOM in React 🚀:
+
+
+
+👉 It is the object representation of actual DOM, At certain point the render function which comes from ReactDOM is invoked in our code, which in place create the VDOM(old object tree). For every changes in state or props the the react rerender the specific component where the state or props is updated and create the new VDOM(recent object tree).
+
+
+
+👉 Here diffing algorithm,  checks the difference between the old VDOM and updated new VDOM and quickly update the content which seems difference.
+
+
+
+#JavaScript hashtag#Promises hashtag#AsyncProgramming hashtag#WebDevelopment hashtag#Coding hashtag#ErrorHandling hashtag#JSBestPractices hashtag#ProgrammingTips hashtag#SoftwareDevelopment hashtag#TechLearning
