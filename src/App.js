@@ -9,7 +9,9 @@ import { RouterProvider } from "react-router-dom";
 import About from "./Component/About";
 import Error from "./Component/Error";
 import Cart from "./Component/Cart";
-
+import RestuarantMenu from "./Component/RestuarantMenu";
+import Login from "./Component/Login";
+import Logout from "./Component/Logout";
 
 const Applayout=() =>{
    return (
@@ -44,6 +46,19 @@ const approuter=createBrowserRouter([
       {
          path:"/cart",
          element:<Cart />
+      },
+      {
+         path:"/restuarantcards/:resId",
+         element:<RestuarantMenu />
+      },
+      {
+         path:"/login",
+         element:<Login />
+      }
+      ,
+      {
+         path:"/logout",
+         element:<Logout />
       }
 
    ],

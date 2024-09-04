@@ -43,10 +43,17 @@ const Body=() =>{
            <div className="res-container">
              {
                  filteredreslist.map((restuarant) =>{
-                 return <RestuarantCards key={restuarant.info.id} rescard={restuarant}/>
+                 return (
+                    <div>
+                         
+                         <RestuarantCards key={restuarant.info.id} rescard={restuarant}/>
+                        
+                        
+                    </div>
+                   
+                 )
              })
              }
-             {/* <RestuarantCards rescard={reslist[0]}/> */}
  
            </div>
         </div>

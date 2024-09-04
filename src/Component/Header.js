@@ -14,14 +14,19 @@ const Header=() =>{
                    <li><Link to="/cart">Cart</Link></li>
                    <li><Link to="/about">About Us</Link></li>
                    <li><Link to="/contact">Contact Us</Link></li>
+                   <li> <Link to={btnname}>
                    <button className="login-btn" onClick={()=>{
                     if(btnname==="Login"){
-                        setBtnname("Logout")
+                        setBtnname("Logout");
                     }
                     else{
                         setBtnname("Login")
                     }
-                   }}>{btnname}</button>
+                   }}>{btnname}
+                   </button>
+                   </Link></li>
+                  
+                   
                 </ul>
            </div>
         </div>
