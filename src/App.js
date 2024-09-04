@@ -8,6 +8,7 @@ import Contact from "./Component/Contact";
 import { RouterProvider } from "react-router-dom";
 import About from "./Component/About";
 import Error from "./Component/Error";
+import Cart from "./Component/Cart";
 
 
 const Applayout=() =>{
@@ -29,12 +30,20 @@ const approuter=createBrowserRouter([
    element:<Applayout/>,
    children:[
       {
+         path:"/",
+         element:<Body />
+      },
+      {
          path:"/contact",
          element:<Contact />
       },
       {
          path:"/about",
          element:<About />
+      },
+      {
+         path:"/cart",
+         element:<Cart />
       }
 
    ],
