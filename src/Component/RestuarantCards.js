@@ -3,7 +3,6 @@ import * as obj_harcoded from "../utils/constants";
 
 const RestuarantCards=(props)=>{
     const {rescard}=props;
-    console.log(rescard.info);
     const{name, costForTwo,cuisines,cloudinaryImageId, avgRating}= rescard?.info
     return(
             <div className="res-card">

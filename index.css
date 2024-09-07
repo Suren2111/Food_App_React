@@ -64,6 +64,11 @@
     margin: 10px;
     padding: 10px;
 }
+.footer-cont{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between
+}
 
 
 

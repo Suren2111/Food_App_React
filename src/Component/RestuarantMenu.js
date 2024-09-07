@@ -3,7 +3,7 @@ import Shimmer from "./Shimmer";
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constants";
-
+import { ShimmerContentBlock } from "react-shimmer-effects";
 
 
 const RestuarantMenu=()=>{
@@ -19,7 +19,19 @@ const fetchMenu=async ()=>{
     SetResDetails(data);
 }
 
-if(resDetails===null) return <Shimmer />
+if(resDetails===null){
+
+    return(
+        <ShimmerContentBlock
+        title
+        text
+        cta
+        thumbnailWidth={370}
+        thumbnailHeight={370}
+      />
+    )
+    
+}
 
 const{name,cloudinaryImageId,cuisines,locality}=resDetails.data?.cards[2]?.card?.card.info
 const{itemCards}=resDetails?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
