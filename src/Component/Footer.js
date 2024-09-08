@@ -6,11 +6,11 @@ const Footer=() =>{
       setShimmerData(true);
   })
   if(shimmerData==null){
-    console.log("Shimmer is called");
+    // console.log("Shimmer is called");
     return <ShimmerTitle line={2} gap={10} variant="primary" />;
   }
 
-  console.log("Footer is called");
+  // console.log("Footer is called");
   return(
     <div className="footer-cont">
        <h2>This is Footer Page</h2> 

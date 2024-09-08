@@ -17,7 +17,7 @@ const Body=() =>{
         setRestuarantlist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredreslist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
-    return restuarantlist.length==0 ? <Shimmer/> :(
+    return restuarantlist.length==0 ? <Shimmer /> :(
         <div className="body-container">
             
            <div className="filter">
