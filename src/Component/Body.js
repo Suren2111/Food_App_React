@@ -22,7 +22,7 @@ const Body=() =>{
             
            <div className="filter">
                <div className="search-box">
-                    <input text="text"value={searchText} onChange={(e)=>{
+                    <input text="text" value={searchText} onChange={(e)=>{
                        setSearchText(e.target.value);
                     }}></input>
                     <button onClick={()=>{
