@@ -1,11 +1,14 @@
-const User=(props)=>{
-    const{name,location,contact}=props;
+import { useState } from "react";
+const User=({name,location,contact})=>{
+    const[count]=useState(0);
     return(
-        <div className="user-cont">
-            <h2>name:{name}</h2>
-            <h3>location:{location}</h3>
-            <h3>contact:{contact}</h3>
+        <div>
+            <h1>count:{count}</h1>
+            <h2>{name}</h2>
+            <h3>{location}</h3>
+            <h4>{contact}</h4>
         </div>
     )
 }
+
 export default User;

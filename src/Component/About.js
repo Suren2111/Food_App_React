@@ -1,12 +1,14 @@
-import User from "./User";
+import User from "./User"
 import UserClass from "./UserClass";
 const About=()=>{
     return(
-        <div>
-            <h1>This is About US Page</h1>
-            <User name={"suren"} location={"trichy"} contact={"suren2111"}/>
-            <UserClass name={"suren"} location={"trichy"} contact={"suren2111"}/>
-        </div>
+      <>
+      <User name={"function"} location={"chennai"} contact={"suren_1999"}/>
+     <UserClass name={"class"} location={"chennai"} contact={"suren_1999"}/>
+      
+      </>
+      
     )
 }
+
 export default About;
