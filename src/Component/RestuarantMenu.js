@@ -1,23 +1,15 @@
-import { useEffect, useState} from "react";
-import Shimmer from "./Shimmer";
+
+import restuarantMenu from "../utils/useRestuarantMenu";
 import { CDN_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constants";
 import { ShimmerContentBlock } from "react-shimmer-effects";
 
 
 const RestuarantMenu=()=>{
-    const [resDetails, SetResDetails]=useState(null);
     const resid=useParams();
-    useEffect(()=>{
-      fetchMenu();
-    },[])
+    const resDetails=restuarantMenu(resid);
+    
 
-const fetchMenu=async ()=>{
-    const resdata=await fetch(MENU_API+resid.resId);
-    const data=await resdata.json();
-    SetResDetails(data);
-}
 
 if(resDetails===null){
 
@@ -32,7 +24,6 @@ if(resDetails===null){
     )
     
 }
-
 const{name,cloudinaryImageId,cuisines,locality}=resDetails.data?.cards[2]?.card?.card.info
 const{itemCards}=resDetails?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
  return(

@@ -1,6 +1,7 @@
 import RestuarantCards from "./RestuarantCards";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body=() =>{
     const [restuarantlist,setRestuarantlist]=useState([]);
@@ -12,11 +13,17 @@ const Body=() =>{
     const fetchData= async () =>{
         const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9005743&lng=80.0931249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
         const jsondata=await data.json();
-        // console.log(jsondata.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+        // console.log(jsondata);
         setRestuarantlist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredreslist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
-    return restuarantlist.length==0 ? <Shimmer /> :(
+
+    const onlineStatus=useOnlineStatus();
+    console.log(onlineStatus+"body component")
+    if(!onlineStatus) return <h1>You're offline Please check the Internet Connection</h1>
+
+    return  restuarantlist.length===0 ? <Shimmer /> :(
+   
         <div className="body-container">
             
            <div className="filter">
@@ -31,7 +38,7 @@ const Body=() =>{
                         setFilteredreslist(searchres);
                     }}> Search</button>
                </div>
-               <button className="filter_btn"onClick={()=>{
+               <button className="filter_btn" onClick={()=>{
                    const filter_restuarantlist=restuarantlist.filter(res =>{
                          return res.info.avgRating > 4.5
                         })
@@ -41,7 +48,7 @@ const Body=() =>{
            </div>
            <div className="res-container">
              {
-                 filteredreslist.map((restuarant) =>{
+                filteredreslist.map((restuarant) =>{
                  return (
                     <div>
                          
@@ -53,8 +60,12 @@ const Body=() =>{
                  )
              })
              }
+
+
  
            </div>
+
+           
         </div>
      )
  }
