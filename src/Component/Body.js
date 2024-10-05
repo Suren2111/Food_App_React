@@ -1,28 +1,21 @@
 import RestuarantCards from "./RestuarantCards";
-import { useState,useEffect } from "react";
+import { useState,useEffect} from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import useRestuarantlists from "../utils/useRestuarantlists";
+import useFilteredRestuarant from "../utils/useFilteredRestuarant";
 
 const Body=() =>{
-    const [restuarantlist,setRestuarantlist]=useState([]);
-    const [searchText,setSearchText]=useState("");
-    const[filteredreslist,setFilteredreslist]=useState([]);
-    useEffect(()=>{
-        fetchData();
-    },[])
-    const fetchData= async () =>{
-        const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9005743&lng=80.0931249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        const jsondata=await data.json();
-        // console.log(jsondata);
-        setRestuarantlist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredreslist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    }
-
+    const[searchText,setSearchText]=useState("");
+    const resDetails=useRestuarantlists();
+    const[filteredreslist,setFilteredreslist]=useState(resDetails);
     const onlineStatus=useOnlineStatus();
-    console.log(onlineStatus+"body component")
+    useEffect(()=>{
+        setFilteredreslist(resDetails);
+    },[resDetails]);
     if(!onlineStatus) return <h1>You're offline Please check the Internet Connection</h1>
 
-    return  restuarantlist.length===0 ? <Shimmer /> :(
+    return  resDetails.length===0 ? <Shimmer /> :(
    
         <div className="body-container">
             
@@ -32,14 +25,14 @@ const Body=() =>{
                        setSearchText(e.target.value);
                     }}></input>
                     <button onClick={()=>{
-                        const searchres=restuarantlist.filter((res)=>{
+                        const searchres=resDetails.filter((res)=>{
                            return res.info.name.toLowerCase().includes(searchText.toLowerCase()); 
                         })
                         setFilteredreslist(searchres);
                     }}> Search</button>
                </div>
                <button className="filter_btn" onClick={()=>{
-                   const filter_restuarantlist=restuarantlist.filter(res =>{
+                   const filter_restuarantlist=resDetails.filter(res =>{
                          return res.info.avgRating > 4.5
                         })
                         setFilteredreslist(filter_restuarantlist);
@@ -48,6 +41,7 @@ const Body=() =>{
            </div>
            <div className="res-container">
              {
+
                 filteredreslist.map((restuarant) =>{
                  return (
                     <div>
@@ -59,11 +53,9 @@ const Body=() =>{
                    
                  )
              })
+
              }
-
-
- 
-           </div>
+            </div>
 
            
         </div>

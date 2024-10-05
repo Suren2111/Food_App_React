@@ -1,5 +1,6 @@
 
 import ReactDOM from 'react-dom/client';
+import { lazy,Suspense } from 'react';
 import Header from "./Component/Header";
 import Body from "./Component/Body";
 import Footer from "./Component/Footer";
@@ -24,6 +25,8 @@ const Applayout=() =>{
        </>
    )
 }
+
+const Grocery=lazy(()=> import('./Component/Grocery'))
 
 
 const approuter=createBrowserRouter([
@@ -59,6 +62,12 @@ const approuter=createBrowserRouter([
       {
          path:"/logout",
          element:<Logout />
+      },
+      {
+         path:"/grocery",
+         element:<Suspense fallback={<h1>Loading</h1>}>
+            <Grocery />
+         </Suspense>
       }
 
    ],

@@ -1,7 +1,6 @@
 import { useState} from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
-import { ShimmerCircularImage } from "react-shimmer-effects";
 import useOnlineStatus from "../utils/useOnlineStatus";
 const Header=() =>{
     const[btnname,setBtnname]=useState("Login");
@@ -19,6 +18,7 @@ const Header=() =>{
                    <li><Link to="/cart">Cart</Link></li>
                    <li><Link to="/about">About Us</Link></li>
                    <li><Link to="/contact">Contact Us</Link></li>
+                   <li><Link to="/grocery">Grocery</Link></li>
                    <li> <Link to={btnname}>
                    <button className="login-btn" onClick={()=>{
                     if(btnname==="Login"){

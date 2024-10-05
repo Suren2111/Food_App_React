@@ -17,7 +17,7 @@ class UserClass extends React.Component{
     }
 
     async componentDidMount(){
-      console.log("child componentDidMount");
+      // console.log("child componentDidMount");
             const data=await fetch("https://api.github.com/users/suren2111")
             const json=await data.json();
             console.log(json);
@@ -26,7 +26,7 @@ class UserClass extends React.Component{
             })
       }
      render(){
-    console.log(this.props.name + "Child render")
+    // console.log(this.props.name + "Child render")
      const{login,id,type}=this.props;
       return(
         <div>
