@@ -1,23 +1,23 @@
 import { useState,useEffect } from "react";
 
-const useRestuarantlists=()=>{
-
-
-    const[reslist,setReslist]=useState([]);
-
+const useRestuarantlists=(RES_API)=>{
+    const[res,setRes]=useState([]);
+    const[carousel,setCarousellist]=useState([]);
     useEffect(()=>{
         fetchData();
-    },[])
+    },[RES_API])
+
 
     const fetchData= async () =>{
-        const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9005743&lng=80.0931249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data=await fetch(RES_API);
         const jsondata=await data.json();
-        setReslist(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setRes(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setCarousellist(jsondata.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     }
 
 
 
-    return reslist;
+    return {res,carousel};
 }
 
 export default useRestuarantlists;

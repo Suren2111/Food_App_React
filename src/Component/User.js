@@ -4,7 +4,7 @@ const User=({name,location,contact})=>{
     useEffect(()=>{
     //    console.log("useEffect");
     const timer=setInterval(() => {
-       console.log("suren") 
+    //    console.log("suren") 
     }, 1000);
 
        return ()=>{

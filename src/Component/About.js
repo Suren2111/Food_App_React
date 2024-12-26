@@ -17,11 +17,11 @@ class About extends Component{
   render(){
     // console.log("parent render")
     return(
-      <>
+      <div className="dark:bg-gray-800 text-black dark:text-white">
 
-     <User name={"first"} location={"chennai"} contact={"suren_1999"}/>
+     <UserClass />
       
-      </>
+      </div>
       
     )
   }
