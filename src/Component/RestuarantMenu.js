@@ -25,7 +25,7 @@ if(resDetails.length==0){
 }
 const{name,cuisines,areaName
     ,avgRating,costForTwoMessage,sla,totalRatingsString
-}=res.data?.cards[2]?.card?.card.info
+}=resDetails.data?.cards[2]?.card?.card.info
 
 const ShowResByCategory=(category)=>{
    dispatch(filterResCategory(category));
@@ -42,9 +42,9 @@ const categories=resDetails.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards
 
 
  return(
-        <div className="dark:bg-gray-800 text-black dark:text-white w-full">
+        <div className="dark:bg-gray-800 text-black dark:text-white w-full pt-32">
            
-            <div className="w-6/12 mx-auto my-8 bg-white ">
+            <div className="w-6/12 mx-auto  bg-white ">
             <h1 className="font-bold text-2xl py-3">{name}</h1> 
             <div className="flex py-2">
             <h2>⭐</h2>

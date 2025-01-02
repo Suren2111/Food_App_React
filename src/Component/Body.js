@@ -63,7 +63,6 @@ const Body=() =>{
     }
 
     const ShowResOnCity=(RES_API)=>{
-        
        setResApi(RES_API);
     }
 
@@ -101,15 +100,15 @@ const Body=() =>{
                 <button className="border border-neutral-400 p-3 rounded-lg m-3 hover:bg-gray-200" onClick={()=>ShowResOnCity("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")}>Mumbai</button>
                 <button className="border border-neutral-400 p-3 rounded-lg m-3 hover:bg-gray-200" onClick={()=>ShowResOnCity("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")}>Bangalore</button>
                 <button className="border border-neutral-400 p-3 rounded-lg m-3 hover:bg-gray-200" onClick={()=>ShowResOnCity("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")}>Delhi</button>
-               </div>
+            </div>
 
-            <div>
-                <div className="flex p-8 mx-8">
+         <div>
+            <div className="flex p-8 mx-8">
                 <h1 className="font-bold text-xl">What's on your mind?</h1>
-                </div>
+            </div>
               
                 
-                <div className="flex justify-between mx-8">
+            <div className="flex justify-between mx-8">
                 <Slider {...settings} className="w-full h-auto">
                     {
                         
@@ -124,12 +123,9 @@ const Body=() =>{
                     }
                
                </Slider>
-                </div>
-                
-
-
-              
             </div>
+  
+         </div>
 
             <div className="flex justify-between  mx-8 p-8">
             <h1 className="font-bold text-xl">Restuarants with online Food Delivery in {location}</h1>
@@ -148,7 +144,7 @@ const Body=() =>{
            <button className="rounded-xl border border-neutral-400 p-2" onClick={()=>filterRestuarantOnPromoted(res)}> Promoted</button>
            </div>
           
-           <div className="flex flex-wrap justify-center gap-6 p-4">
+           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
              {
 
          resDetails.map((restuarant) =>{
