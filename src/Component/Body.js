@@ -63,6 +63,7 @@ const Body=() =>{
     }
 
     const ShowResOnCity=(RES_API)=>{
+        
        setResApi(RES_API);
     }
 
@@ -73,7 +74,6 @@ const Body=() =>{
                 // console.log("Latitude: " + position.coords.latitude);
                 // console.log("Longitude: " + position.coords.longitude);
                 setResApi("https://www.swiggy.com/dapi/restaurants/list/v5?lat="+position.coords.latitude+"&lng="+position.coords.longitude+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
-                
             }, function(error) {
                 console.log("Error: " + error.message);
             });
@@ -114,7 +114,6 @@ const Body=() =>{
                     {
                         
                          carousellist && carousellist.map((carousel)=>{
-                            // console.log(carousel)
                             return(
                                 
                                 <Carousel carousel={carousel} key={carousel.id}/>

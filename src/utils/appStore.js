@@ -4,6 +4,7 @@ import Userreducer from "./userSlice"
 import Themereducer from "./themeSlice"
 import Filterreducer from "./filterSlice"
 import exampleReducer from "./exampleSlice"
+import resMenuReducer from "./resMenuSlice"
 
 
 const appStore=configureStore({
@@ -12,7 +13,8 @@ const appStore=configureStore({
        user:Userreducer,
        theme:Themereducer,
        restuarantfilter:Filterreducer,
-       example:exampleReducer
+       example:exampleReducer,
+       resMenufilter:resMenuReducer
 
     }
 });

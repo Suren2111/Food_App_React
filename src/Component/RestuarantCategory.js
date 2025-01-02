@@ -1,39 +1,63 @@
 import ItemCategoryList from "./ItemCategoryList";
 import {useState} from "react";
+import { useSelector} from "react-redux";
 
-const RestuarantCategory=({cards,showItems,setShowIndex,index})=>{
 
-    const HandleClick=(index)=>{
+const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
+    const resCategory=useSelector((store)=>store.resMenufilter.resCategory);
+        const HandleClick=(index)=>{
         setShowIndex((prevIndex)=>{
-        return prevIndex==index ? null: index
+        return prevIndex==index ? null: index;
       })
     }
 
-    return(
-        <div className="text-center w-6/12 mx-auto my-4 bg-gray-50  dark:bg-gray-800 text-black dark:text-white">
-            {/*acoordian title */}
+    const categoryLength=itemCards?.filter((c)=>{
+        if(resCategory.includes(c.card.info.itemAttribute.vegClassifier) || resCategory.includes(c?.card?.info?.ribbon?.text)){
+            return c;
+        }}).length;
 
-            <div  className="flex justify-between cursor-pointer" onClick={()=>HandleClick(index)}>
+        if(categoryLength>0){
+            return(
 
-            <span className="font-bold text-lg">{cards?.card?.card.title} ({cards?.card?.card?.itemCards.length})</span>
-            <span>⬇</span>
+                <div className="">
+                     
+                    {/*acoordian title */}
+        
+                    <div  className="flex justify-between cursor-pointer font-semibold" onClick={()=>HandleClick(index)}>
+                    {
+                       <span className="font-bold text-lg">{title} ({categoryLength|| 0})</span>
+                         
+                    }
+                    {
+                       <span>⬇</span> 
+                    }
+                    </div>
+        
+                    {/*accordian body*/}
+        
+                    <div className="my-4 text-left  dark:bg-gray-800 text-black dark:text-white border-y-4">
+                        {showItems && itemCards.map((c)=>{
+                            
+                                if((resCategory.includes(c.card.info.itemAttribute.vegClassifier) || resCategory.includes(c?.card?.info?.ribbon?.text))){
+                                    return(
+                                        
+                                        <ItemCategoryList key={itemCards?.card?.info?.id} items={c}/>
+                                    )
+                                    
+                                }
+                                
+                            
+                         })}
+                       
+                 
+                    </div>
+           
+                </div>
+            )
+        }
 
-
-            </div>
-
-            {/*accordian body*/}
-            <div className="my-4 text-left  dark:bg-gray-800 text-black dark:text-white">
-                {showItems && cards?.card?.card?.itemCards.map((c)=>{
-                    return(
-                        <ItemCategoryList key={cards?.cards?.card?.card?.itemCards?.card?.info?.id} items={c}/>
-                    )
-                 })}
-               
-         
-            </div>
-   
-        </div>
-    )
+    
 }
+
 
 export default RestuarantCategory;

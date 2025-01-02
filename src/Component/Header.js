@@ -39,7 +39,7 @@ const Header = () => {
 
 
   return (
-    <div className="flex justify-between dark:bg-gray-800 text-black dark:text-white border border-b-gray-400 shadow-2xl">
+    <div className="flex justify-between dark:bg-gray-800 text-black dark:text-white border border-b-gray-400 shadow-xl">
       <div className="m-7 flex">
           <h1 className="p-3 my-3 mx-8 text-xl text-red-600 font-bold">DishFly</h1>
       </div>
