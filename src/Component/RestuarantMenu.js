@@ -7,6 +7,7 @@ import {useState} from "react";
 import { useSelector,useDispatch} from "react-redux";
 import { filterMenuonres,filterResCategory,filterResBestSeller } from "../utils/resMenuSlice";
 import NestedRestuarantCategory from "./NestedRestuarantCategory";
+import { ShimmerSectionHeader } from "react-shimmer-effects";
 
 const RestuarantMenu=()=>{
     const resid=useParams();
@@ -19,7 +20,10 @@ const RestuarantMenu=()=>{
 if(resDetails.length==0){
 
     return(
-    <h1>Loading....</h1>
+        <div>
+        <ShimmerSectionHeader />
+        <ShimmerSectionHeader center />
+        </div>
     )
     
 }

@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import { ShimmerPostList } from "react-shimmer-effects";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useRestuarantlists from "../utils/useRestuarantlists";
 import RestuarantCards,{withPromotedLabel}from "./RestuarantCards";
@@ -10,9 +9,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Offline_LOGO_URL } from "../utils/constants";
-
-
-
+import { ShimmerPostList } from "react-shimmer-effects";
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const Body=() =>{
     const [resApi,setResApi]=useState("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9005743&lng=80.0931249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
@@ -89,11 +87,15 @@ const Body=() =>{
         </div>
     ) 
 
-    return  resDetails.length===0 ? <h1>Loading</h1> :(
+    return  resDetails.length===0 ? 
+
+    <ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />
+    
+    :(
 
        
        
-        <div className="bg-white dark:bg-gray-800 text-black dark:text-white">
+        <div className="bg-white dark:bg-gray-800 text-black dark:text-white pt-32">
 
             <div className="p-5 m-5">
                 <button className="border border-neutral-400 p-3 rounded-lg m-3 hover:bg-gray-200" onClick={ShowResonLocation}>Your Location</button>
