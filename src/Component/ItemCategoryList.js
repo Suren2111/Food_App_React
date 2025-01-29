@@ -1,11 +1,14 @@
 import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
-import { addItems } from "../utils/cartSlice";
+import { addItems,addPrice } from "../utils/cartSlice";
 const ItemCategoryList=(props)=>{
     const dispatch=useDispatch();
     const{items}=props;
     const handleItemCart= (items)=>{
-        dispatch(addItems(items))
+        const price=(items.card.info.price || items.card.info.defaultPrice)/100;
+        const updatedItems = { ...items, count: 1};
+        dispatch(addItems({updatedItems,price}))
+
     }
     return(
        <div className="border-b-4">

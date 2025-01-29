@@ -1,12 +1,28 @@
 import { CDN_URL } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeItems } from "../utils/cartSlice";
+import { addPrice,removePrice } from "../utils/cartSlice";
 const CartItem=({items})=>{
-    const{imageId,name,finalPrice}=items?.card?.info;
+    const{imageId,name}=items?.card?.info;
+    const price=(items.card.info.price || items.card.info.defaultPrice)/100;
+    const itemCount=items.count;
     const dispatch=useDispatch();
+    const removeItemFromcart=(price,name,itemCount)=>{
+       const totalPrice=itemCount*price;
+       dispatch(removeItems({name,totalPrice}))
+    
 
-    const removeItemFromcart=(name)=>{
-       dispatch(removeItems(name))
+    }
+    
+    const reduceItemCount=(price,name)=>{
+        if(itemCount-1>0){
+            dispatch(removePrice({price,name}))
+        }
+    
+    }
+
+    const increaseItemCount=(price,name)=>{
+        dispatch(addPrice({price,name}))
     }
     return(
         <div className="pt-4">
@@ -15,9 +31,15 @@ const CartItem=({items})=>{
                <img src={CDN_URL+imageId} className="h-28 w-28"></img>
                <div className="my-6 px-4">
                    <h1 className="px-4">{name}</h1>
-                   <h2>₹-{finalPrice/100}</h2>
+                   <h2>₹{price*itemCount}</h2>
+                   <div className="flex my-6 px-8">
+                   <button className="border border-solid p-2 mx-4" onClick={()=>reduceItemCount(price,name)}>-</button>
+                   <p1 className="p-2">{itemCount}</p1>
+                   <button className="border border-solid p-2 mx-4" onClick={()=>increaseItemCount(price,name)}>+</button>
+                   </div>
+                   
                </div>
-               <button className="border rounded-lg text-red-200" onClick={()=>removeItemFromcart(name)}>Remove</button>
+               <button className="border rounded-lg text-red-200" onClick={()=>removeItemFromcart(price,name,itemCount)}>Remove</button>
             </div>
             
         </div>

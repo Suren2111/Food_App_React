@@ -22,7 +22,6 @@ import { Provider } from 'react-redux';
 import themeContext from './utils/themeContext';
 import loginContext from './utils/loginContext';
 import UserClass from './Component/UserClass';
-import exampleContext from './utils/exampleContext';
 
 
 

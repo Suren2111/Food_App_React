@@ -7,12 +7,14 @@ const useRestuarantlists=(RES_API)=>{
     const[res,setRes]=useState([]);
     const[carousel,setCarousellist]=useState([]);
     useEffect(()=>{
-        fetchData();
+        fetchData(RES_API);
     },[RES_API])
 
 
-    const fetchData= async () =>{
-        const data=await fetch(RES_API);
+    const fetchData= async (RES_API) =>{
+        const data = await fetch("https://thingproxy.freeboard.io/fetch/" + RES_API);
+
+
         const jsondata=await data.json();
         const location=jsondata.data.cards[11].card.card.citySlug;
         dispatch(updateLocationDetails(location.charAt(0).toUpperCase() + location.slice(1)));

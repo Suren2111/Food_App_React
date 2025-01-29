@@ -13,7 +13,7 @@ import { ShimmerPostList } from "react-shimmer-effects";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const Body=() =>{
-    const [resApi,setResApi]=useState("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9005743&lng=80.0931249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const [resApi,setResApi]=useState("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
     const {res,carousel}=useRestuarantlists(resApi);
     const resDetails=useSelector((store)=>store.restuarantfilter.restuarant);
     const carousellist=useSelector((store)=>store.restuarantfilter.carousellist);
