@@ -1,18 +1,15 @@
 import exampleContext from "../utils/exampleContext";
 import { useContext } from "react";
-const Offers=()=>{ 
-  const {name}=useContext(exampleContext)
-  console.log(name+"Offers component re-rendered")
-   return(
-      <div>
-         <h1 className="font-bold p-4 m-4">Contact US Page</h1>
-         <form>
-            <input className="border border-black p-2 m-2" placeholder="name"></input>
-            <input className="border border-black p-2 m-2" placeholder="message"></input>
-            <button className="bg-gray-400 rounded-lg p-2 m-2">Submit</button>
-         </form>
-      </div>
-   )
+const Offers=()=>{
+  return(
+   <div className="flex items-center justify-center min-h-screen">
+
+    <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqKS9fSJEGZnEm6tvm68CN6RpUnrJ8NaPvTA&s"} className="m-auto"></img>
+     
+
+   </div>
+   
+  )
 }
 
 export default Offers;

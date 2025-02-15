@@ -23,6 +23,7 @@ const Header = () => {
 
 
 
+
   const toggleChanges = () => {
     dispatch(updateTheme(theme === "dark" ? "light" : "dark"));
   };
@@ -56,10 +57,12 @@ const Header = () => {
             <Link to="/offers" className="hover:text-red-500">Offers</Link>
           </li>
           <li className="p-3 m-3">
-          <Link to="/offers" className="hover:text-red-500">Help</Link>
+          <Link to="/help" className="hover:text-red-500">Help</Link>
         </li>
-        <li className="p-3 m-3">
-        <Link to="/offers" className="hover:text-red-500">Sign In</Link>
+        <li className="p-3 m-3" onClick={()=>{
+          setBtnname("Logout")
+        }}>
+        <Link to="/signin" className="hover:text-red-500">{btnname}</Link>
       </li>
           <li className="p-3 m-3">
             <Link to="/cart" className="hover:text-red-500">Cart-({cartItems.length} items)</Link>

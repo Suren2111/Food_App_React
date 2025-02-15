@@ -5,7 +5,6 @@ import Header from "./Component/Header";
 import Body from "./Component/Body";
 import Footer from "./Component/Footer";
 import { createBrowserRouter,Outlet} from "react-router-dom";
-import { BrowserRouter, Route } from 'react-router-dom';
 import Search from "./Component/Search"
 import { RouterProvider } from "react-router-dom";
 import About from "./Component/About";
@@ -22,6 +21,9 @@ import { Provider } from 'react-redux';
 import themeContext from './utils/themeContext';
 import loginContext from './utils/loginContext';
 import UserClass from './Component/UserClass';
+import Help from './Component/Help';
+import SignIn from './Component/SignIn';
+import { Sample } from './Component/Sample';
 
 
 
@@ -68,6 +70,9 @@ const approuter = createBrowserRouter([
          { path: '/login', element: <Login /> },
          { path: '/logout', element: <Logout /> },
          { path: '/user', element: <UserClass /> },
+         {path:'/help',element:<Help />},
+         {path: '/signin',element:<SignIn />},
+         {path: '/sample',element:<Sample />},
          {
             path: '/grocery',
             element: (

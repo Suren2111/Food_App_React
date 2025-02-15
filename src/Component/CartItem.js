@@ -28,7 +28,7 @@ const CartItem=({items})=>{
         <div className="pt-4">
             
             <div className="flex">
-               <img src={CDN_URL+imageId} className="h-28 w-28"></img>
+               <img src={CDN_URL+imageId} className="h-28 w-28 my-6"></img>
                <div className="my-6 px-4">
                    <h1 className="px-4">{name}</h1>
                    <h2>₹{price*itemCount}</h2>
@@ -39,7 +39,7 @@ const CartItem=({items})=>{
                    </div>
                    
                </div>
-               <button className="border rounded-lg text-red-200" onClick={()=>removeItemFromcart(price,name,itemCount)}>Remove</button>
+               <button className="my-20 px-1 py-1 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-700 transition-all" onClick={()=>removeItemFromcart(price,name,itemCount)}>Remove</button>
             </div>
             
         </div>

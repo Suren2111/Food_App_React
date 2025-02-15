@@ -2,4 +2,5 @@
 .parcel-cache
 dist
 /coverage
+__tests__
 

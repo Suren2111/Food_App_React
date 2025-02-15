@@ -22,11 +22,16 @@ const Cart=()=>{
     if(order===true){
         return(
             
-                    <div className="pt-32">
-                    <h1>Order Placed</h1>
-                    <h2>Thank You for the order</h2>
-                    <h2>Your Order ID-{Math.floor(Math.random() * 1000000)}</h2>
-                    </div>
+            <div className="flex items-center justify-center min-h-screen">
+            <div className="text-center">
+              <h1>✅</h1>
+              <h1 className="text-2xl font-medium">Order Placed</h1>
+              <h2 className="pt-2 pb-2">Thank You for the order</h2>
+              <h2 className="text-lg font-medium">Your Order ID-{Math.floor(Math.random() * 1000000)}</h2>
+              <Link to={'/'}><button className="p-4 bg-orange-400 rounded-lg">Go to home</button></Link>
+              
+            </div>
+          </div>
                 
             
         )
@@ -34,7 +39,7 @@ const Cart=()=>{
  
     return(
         <div className="text-center m-4 p-4 font-bold dark:bg-gray-800 text-black dark:text-white pt-32">
-            <div className="w-full flex">
+            <div className="w-full flex pt-16 pl-16">
                
             {
                             items.length===0 ? (
@@ -72,14 +77,36 @@ const Cart=()=>{
                                     </div>
                                            
                                 </div>
-                                <div className="w-2/6 border border-solid ml-8">
+                                <div className="w-2/6 border border-solid ml-12 h-96">
 
-                                <h1 className="mt-4">Order Summary</h1>
-                                <p>Price({items.length} items)-{totalPrice}</p>
-                                <p>Discount(10%)-{Math.round((totalPrice*10)/100)}</p>
-                                <p>Delivery Charges-49</p> 
-                                <p>You will Save {Math.round((totalPrice*10)/100)} in this Order🎉</p>
-                                <h1>Total Amount-{totalPrice-Math.round((totalPrice*10)/100)+49}</h1>
+                                <h1 className="mt-4 text-2xl font-medium">Order Summary</h1>
+                                
+                                <div className="flex justify-between pt-8">
+                                <h1 className="pl-4 text-lg font-light">Price({items.length} items)</h1>
+                                <h1 className="pr-4 text-lg">{totalPrice}</h1>
+                                </div>
+
+                                <div className="flex justify-between pt-2">
+                                <h1 className="pl-4 text-lg font-light">Discount(10%)</h1>
+                                <h1 className="pr-4 text-lg">₹{Math.round((totalPrice*10)/100)}</h1>
+                                </div>
+
+                                <div className="flex justify-between pt-2">
+                                <p className="pl-4 text-lg font-light">Delivery Charges</p> 
+                                <p className="pr-4 text-lg">₹49</p>
+                                </div>
+
+                                <div className="flex justify-between pt-2">
+                                <h1 className="pl-4 text-lg  font-light">You will Save ₹{Math.round((totalPrice*10)/100)} in this Order🎉</h1>
+                                </div>
+                                
+                               
+                                <div className="flex justify-between pt-2">
+                                <h1 className="pl-4 text-lg font-light">Total Amount</h1>
+                                <h1 className="pr-4 text-lg">₹{totalPrice-Math.round((totalPrice*10)/100)+49}</h1>
+                                </div>
+                               
+                                
                                 <button className="bg-orange-600 rounded-lg p-4" onClick={handleClick}>Place Order</button>
                                 </div>
                                 </>

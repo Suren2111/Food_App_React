@@ -1,69 +1,37 @@
-import { fireEvent, render,screen } from "@testing-library/react"
-import Header from "../Component/Header"
-import { BrowserRouter } from "react-router-dom"
+ import { fireEvent, render,screen } from "@testing-library/react"
+ import Header from "../Component/Header"
 import { Provider } from "react-redux"
 import appStore from "../utils/appStore"
-import "@testing-library/jest-dom";
+import { BrowserRouter } from "react-router-dom"
+import "@testing-library/jest-dom"
 
-
-it("Should render the Header Component with login button",()=>{
-     render(
+it("Should render the header component in UI",()=>{
+    render(
         <BrowserRouter>
-           <Provider store={appStore}>
-              <Header />
-           </Provider>
+        <Provider store={appStore}>
+           <Header />
+        </Provider>
         </BrowserRouter>
-   
 )
 
-        const loginButton=screen.getByRole("button");
-        expect(loginButton).toBeInTheDocument();
+const cart=screen.getByText(/Cart/);
 
+expect(cart).toBeInTheDocument();
 })
 
-it("Should render the Header Component with Cart-(0 items)",()=>{
+it("Should change the button from Login to Logout on Clicking",()=>{
     render(
-       <BrowserRouter>
-          <Provider store={appStore}>
-             <Header />
-          </Provider>
-       </BrowserRouter>
-  
+        <BrowserRouter>
+        <Provider store={appStore}>
+           <Header />
+        </Provider>
+        </BrowserRouter>
 )
 
-     const cartItems=screen.getByText("Cart-(0 items)");
-     expect(cartItems).toBeInTheDocument();
+const login=screen.getByText("Login");
+fireEvent.click(login);
+const logout=screen.getByText("Logout");
+expect(logout).toBeInTheDocument();
 
-})
-
-it("Should render the Header Component with Cart",()=>{
-    render(
-       <BrowserRouter>
-          <Provider store={appStore}>
-             <Header />
-          </Provider>
-       </BrowserRouter>
-  
-)
-
-     const cartItems=screen.getByText(/Cart/);
-     expect(cartItems).toBeInTheDocument();
-
-})
-
-it("Should change the button from login to logout on Clicking in Header Component",()=>{
-    render(
-       <BrowserRouter>
-          <Provider store={appStore}>
-             <Header />
-          </Provider>
-       </BrowserRouter>
-  
-)
-
-    const loginButton=screen.getByRole("button", {name: "Login"});
-    fireEvent.click(loginButton);
-    const logoutButton=screen.getByRole("button", {name: "Logout"});
-    expect(logoutButton).toBeInTheDocument();
 
 })

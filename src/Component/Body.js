@@ -4,10 +4,10 @@ import useRestuarantlists from "../utils/useRestuarantlists";
 import RestuarantCards,{withPromotedLabel}from "./RestuarantCards";
 import { useSelector,useDispatch } from "react-redux";
 import { filterrating,updateResDetails,filterFasterDelivery,filterPromoted,filterUI,updateLocationDetails} from "../utils/filterSlice";
-import Carousel from "./Carousel";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import Carousel from "./Carousel";
+// import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import { Offline_LOGO_URL } from "../utils/constants";
 import { ShimmerPostList } from "react-shimmer-effects";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
@@ -110,7 +110,7 @@ const Body=() =>{
             </div>
               
                 
-            <div className="flex justify-between mx-8">
+            {/* <div className="flex justify-between mx-8">
                 <Slider {...settings} className="w-full h-auto">
                     {
                         
@@ -125,7 +125,7 @@ const Body=() =>{
                     }
                
                </Slider>
-            </div>
+            </div> */}
   
          </div>
 
@@ -138,7 +138,7 @@ const Body=() =>{
            
             
            <div className="flex justify-evenly m-2 p-2">
-           <input className="border border-neutral-400 p-2 rounded-lg" placeholder="Restuarants" onChange={(e)=>searchRestuarant(e,res)}></input>
+           <input className="border border-neutral-400 p-2 rounded-lg" placeholder="Restuarants" data-testid="SearchInput" onChange={(e)=>searchRestuarant(e,res)}></input>
            <button className="rounded-xl border border-neutral-400 p-2" onClick={()=>filterFasterDelievery(res)}> Fast Delievery</button>
            <button className="rounded-xl border border-neutral-400 p-2" onClick={()=>filterRestuarantOnRating(res)}> Ratings 4.5+</button>
            <button className="rounded-xl border border-neutral-400 p-2"> RS. 300-RS. 600</button>
@@ -151,7 +151,7 @@ const Body=() =>{
 
          resDetails.map((restuarant) =>{
                  return (
-                    <div key={restuarant.info.id}>
+                    <div key={restuarant.info.id} data-testid="Restuarants">
                          
                          
 

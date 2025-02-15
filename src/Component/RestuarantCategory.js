@@ -5,6 +5,7 @@ import { useSelector} from "react-redux";
 
 const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
     const resCategory=useSelector((store)=>store.resMenufilter.resCategory);
+    
         const HandleClick=(index)=>{
         setShowIndex((prevIndex)=>{
         return prevIndex==index ? null: index;
