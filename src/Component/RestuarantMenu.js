@@ -19,17 +19,14 @@ const RestuarantMenu=()=>{
 
 if(resDetails.length==0){
 
-    return(
-        <div>
-        <ShimmerSectionHeader />
-        <ShimmerSectionHeader center />
-        </div>
-    )
+   return <h1>Loading....</h1>
     
 }
 const{name,cuisines,areaName
     ,avgRating,costForTwoMessage,sla,totalRatingsString
-}=resDetails.data?.cards[2]?.card?.card.info
+}=resDetails?.data?.cards[2]?.card?.card.info
+
+
 
 const ShowResByCategory=(category)=>{
    dispatch(filterResCategory(category));

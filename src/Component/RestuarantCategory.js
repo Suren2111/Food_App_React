@@ -20,7 +20,7 @@ const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
         if(categoryLength>0){
             return(
 
-                <div className="">
+                <div>
                      
                     {/*acoordian title */}
         

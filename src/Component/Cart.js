@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { CART_IMAGE } from "../utils/constants";
 import CartItem from "./CartItem";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 const Cart=()=>{
     const items=useSelector((store)=>store.cart.items);
     const totalPrice=useSelector((store)=>store.cart.price);

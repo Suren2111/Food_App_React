@@ -11,7 +11,7 @@ const ItemCategoryList=(props)=>{
 
     }
     return(
-       <div className="border-b-4">
+       <div className="border-b-4"  data-testid="foodItems">
         
         <div>
         <div className="flex justify-between my-4 font-bold">

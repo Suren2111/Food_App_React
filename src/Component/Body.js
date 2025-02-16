@@ -89,7 +89,7 @@ const Body=() =>{
 
     return  resDetails.length===0 ? 
 
-    <ShimmerPostList postStyle="STYLE_FOUR" col={3} row={2} gap={30} />
+    <h1>Loading.....</h1>
     
     :(
 
