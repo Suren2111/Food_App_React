@@ -66,6 +66,8 @@ const Cart=()=>{
                                                     return(
                                                         <CartItem 
                                                         items={item}
+                                                        key={item?.card?.info?.id}
+
                                                         
 
                                                         />

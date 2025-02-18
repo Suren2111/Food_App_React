@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialTheme = localStorage.getItem('theme') || 'light';
 
 const themeSlice = createSlice({
-  name: "theme",
+  name: "theme", 
   initialState: {
     theme: initialTheme, 
   },

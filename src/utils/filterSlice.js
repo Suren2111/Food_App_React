@@ -5,7 +5,7 @@ const filterSlice=createSlice({
     initialState:{
         restuarant:[],
         carousellist:[],
-        location:"Chennai"
+        location:"Chennai"    
     },
     reducers:{
         filterrating:(state,action)=>{ 

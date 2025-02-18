@@ -34,7 +34,7 @@ const CartItem=({items})=>{
                    <h2>₹{price*itemCount}</h2>
                    <div className="flex my-6 px-8">
                    <button className="border border-solid p-2 mx-4" onClick={()=>reduceItemCount(price,name)}>-</button>
-                   <p1 className="p-2">{itemCount}</p1>
+                   <p className="p-2">{itemCount}</p>
                    <button className="border border-solid p-2 mx-4" onClick={()=>increaseItemCount(price,name)}>+</button>
                    </div>
                    

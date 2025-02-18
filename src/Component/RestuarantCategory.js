@@ -38,11 +38,13 @@ const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
         
                     <div className="my-4 text-left  dark:bg-gray-800 text-black dark:text-white border-y-4">
                         {showItems && itemCards.map((c)=>{
+
+                            // console.log(c);
                             
                                 if((resCategory.includes(c.card.info.itemAttribute.vegClassifier) || resCategory.includes(c?.card?.info?.ribbon?.text))){
                                     return(
                                         
-                                        <ItemCategoryList key={itemCards?.card?.info?.id} items={c}/>
+                                        <ItemCategoryList key={c?.card?.info?.id} items={c}/>
                                     )
                                     
                                 }

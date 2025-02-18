@@ -22,7 +22,7 @@ const cartSlice=createSlice({
         },
         clearCart:(state)=>{
            state.items.length=0;
-           state.price=0;
+           state.price=0; 
         },
         addPrice:(state,action)=>{
             state.price=state.price+action.payload.price

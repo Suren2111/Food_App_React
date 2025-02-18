@@ -4,13 +4,7 @@ import useRestuarantlists from "../utils/useRestuarantlists";
 import RestuarantCards,{withPromotedLabel}from "./RestuarantCards";
 import { useSelector,useDispatch } from "react-redux";
 import { filterrating,updateResDetails,filterFasterDelivery,filterPromoted,filterUI,updateLocationDetails} from "../utils/filterSlice";
-// import Carousel from "./Carousel";
-// import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import { Offline_LOGO_URL } from "../utils/constants";
-import { ShimmerPostList } from "react-shimmer-effects";
-import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const Body=() =>{
     const [resApi,setResApi]=useState("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
@@ -32,6 +26,8 @@ const Body=() =>{
       };
 
     useEffect(()=>{
+        console.log(res);
+        console.log(carousel);
         dispatch(updateResDetails({res,carousel}))
     },[res,carousel]);
 
