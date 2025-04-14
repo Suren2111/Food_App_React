@@ -31,6 +31,7 @@ const CartItem=({items})=>{
                <img src={CDN_URL+imageId} className="h-28 w-28 my-6"></img>
                <div className="my-6 px-4"  data-testid="cartitems">
                    <h1 className="px-4">{name}</h1>
+                   
                    <h2>₹{price*itemCount}</h2>
                    <div className="flex my-6 px-8">
                    <button className="border border-solid p-2 mx-4" onClick={()=>reduceItemCount(price,name)}>-</button>

@@ -1,7 +1,7 @@
-import ItemCategoryList from "./ItemCategoryList";
 import RestuarantCategory from "./RestuarantCategory";
-const NestedRestuarantCategory=({cards,showItems,setShowIndex,index,showIndex})=>{
-    // console.log(cards);
+import { useState } from "react";
+const NestedRestuarantCategory=({cards,resCategory})=>{
+     const [showIndex,setShowIndex]=useState(null);
     return(
         <div className="">
             {
@@ -10,7 +10,7 @@ const NestedRestuarantCategory=({cards,showItems,setShowIndex,index,showIndex})=
             }
              {
                 
-                cards?.card?.card?.categories.map((c)=>{
+                cards?.card?.card?.categories.map((c,index)=>{
                     return(
                         < RestuarantCategory 
                          key={c?.title}
@@ -19,6 +19,7 @@ const NestedRestuarantCategory=({cards,showItems,setShowIndex,index,showIndex})=
                          setShowIndex={setShowIndex}
                          index={index}
                          title={c?.title}
+                         resCategory={resCategory}
                 />
                     )
                 })

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart, removeItems } from "../utils/cartSlice";
+import { clearCart} from "../utils/cartSlice";
 import { Link } from "react-router-dom";
 import { CART_IMAGE } from "../utils/constants";
 import CartItem from "./CartItem";
@@ -37,7 +37,7 @@ const Cart=()=>{
        }
  
     return(
-        <div className="text-center m-4 p-4 font-bold dark:bg-gray-800 text-black dark:text-white pt-32">
+        <div className="text-center p-4 font-bold dark:bg-gray-800 text-black dark:text-white pt-32">
             <div className="w-full flex pt-16 pl-16">
                
             {

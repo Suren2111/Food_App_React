@@ -2,16 +2,16 @@ import useRestuarantMenu from "../utils/useRestuarantMenu";
 import { useParams } from "react-router-dom";
 import RestuarantCategory from "./RestuarantCategory";
 import {useState,useEffect} from "react";
-import { useSelector,useDispatch} from "react-redux";
-import { filterMenuonres,filterResCategory,filterResBestSeller } from "../utils/resMenuSlice";
 import NestedRestuarantCategory from "./NestedRestuarantCategory";
+import Shimmer from "./Shimmer";
 
 const RestuarantMenu=()=>{
     const resid=useParams();
     const res=useRestuarantMenu(resid);
-    const resDetails=useSelector((store)=>store.resMenufilter.resMenu);
-    const dispatch=useDispatch();
-    const [showIndex,setShowIndex]=useState(null);
+    const [resDetails,setResDetails]=useState([]);
+    const [showIndex,setShowIndex]=useState(null); 
+    const[resCategory,setResCategory]=useState(["VEG","NONVEG"]);
+    const [resBestSeller,setResBestSeller]=useState(false);
 
     useEffect(()=>{
         const category_filter=res?.data?.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter((card)=>{
@@ -19,7 +19,7 @@ const RestuarantMenu=()=>{
                 !["type.googleapis.com/swiggy.presentation.food.v2.MenuVegFilterAndBadge" , 'type.googleapis.com/swiggy.presentation.food.v2.MenuCarousel' , 'type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo' , 'type.googleapis.com/swiggy.presentation.food.v2.RestaurantAddress'].includes( card?.card?.card?.["@type"])
                     )
         })
-        dispatch(filterMenuonres(category_filter));
+        setResDetails(category_filter)
 
     },[res])
 
@@ -27,9 +27,7 @@ const RestuarantMenu=()=>{
 if(res.length==0){
 
    return(
-      <div className="pt-32">
-                <h1 className="font-semibold">Hold On, Best Restuarant Menu is Loading</h1>                     
-     </div>
+      <Shimmer />
    )
     
 }
@@ -41,13 +39,14 @@ const{name,cuisines,areaName
 
 
 const ShowResByCategory=(category)=>{
-   dispatch(filterResCategory(category));
+setResCategory(category);
+
 }
 
  return(
         <div className="dark:bg-gray-800 text-black dark:text-white w-full pt-32">
 
-     <div className="w-6/12 mx-auto  bg-white ">
+     <div className="w-6/12 mx-auto  bg-white dark:bg-gray-800 text-black dark:text-white">
              <h1 className="font-bold text-2xl py-3">{name}</h1> 
              <div className="flex py-2">
              <h2>⭐</h2>
@@ -72,13 +71,14 @@ const ShowResByCategory=(category)=>{
         </div>
 
        
-            
+           
 
             <div className="text-center w-6/12 mx-auto my-4 bg-gray-50  dark:bg-gray-800 text-black dark:text-white">
             {
                 resDetails && resDetails.map((c,index)=>{ 
                     if(c?.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"){
                         return(
+
                             <NestedRestuarantCategory 
                              cards={c}
                              showItems={index===showIndex ? true : false}
@@ -86,6 +86,7 @@ const ShowResByCategory=(category)=>{
                              index={index}
                              showIndex={showIndex}
                              key={c?.card?.card.title}
+                             resCategory={resCategory}
                              />
                         ) 
                     } 
@@ -98,6 +99,7 @@ const ShowResByCategory=(category)=>{
                 setShowIndex={setShowIndex}
                 index={index}
                 title={c?.card?.card.title}
+                resCategory={resCategory}
                 />
 
                 ) 

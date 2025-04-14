@@ -1,59 +1,61 @@
 
 import ReactDOM from 'react-dom/client';
-import { lazy,Suspense, useEffect, useState } from 'react';
+import { lazy,Suspense, useEffect, useState,useContext} from 'react';
 import Header from "./Component/Header";
 import Body from "./Component/Body";
 import Footer from "./Component/Footer";
 import { createBrowserRouter,Outlet} from "react-router-dom";
 import Search from "./Component/Search"
 import { RouterProvider } from "react-router-dom";
-import About from "./Component/About";
 import Error from "./Component/Error";
-import Cart from "./Component/Cart";
 import RestuarantMenu from "./Component/RestuarantMenu";
-import Login from "./Component/Login";
-import Logout from "./Component/Logout";
-import Errorboundry from './Component/Errorboundry';
-import { useContext } from 'react';
 import Offers from './Component/Offers';
 import appStore from './utils/appStore';
 import { Provider } from 'react-redux';
-import themeContext from './utils/themeContext';
-import loginContext from './utils/loginContext';
-import UserClass from './Component/UserClass';
 import Help from './Component/Help';
 import SignIn from './Component/SignIn';
-import { Sample } from './Component/Sample';
-
-
-
-const Grocery = lazy(() => import('./Component/Grocery'));
-
-// Layout Component
+import Shimmer from './Component/Shimmer';
+import OfflineNotice from './Component/OfflineNotice';
+import useOnlineStatus from './utils/useOnlineStatus';
+import Demo from './Component/Demo';
+const Cart = lazy(() => import('./Component/Cart'));
 const Applayout = () => {
-   // Get the default theme from context
-   const { defaultTheme } = useContext(themeContext);
-   const [theme, setTheme] = useState(defaultTheme); // State for theme
-   const {userInfo}=useContext(loginContext);
-   const [name,setName]=useState(userInfo)
-   return (
+   const isOnline = useOnlineStatus();
+   const [wasInitiallyOffline, setWasInitiallyOffline] = useState(!navigator.onLine);
 
+  // If user was offline but comes back online, update initial state
+  useEffect(() => {
+    if (isOnline && wasInitiallyOffline) {
+      setWasInitiallyOffline(false);
+    }
+  }, [isOnline]);
+
+  // Case 1: User visits in offline mode → Show only offline message
+  if (wasInitiallyOffline && !isOnline) {
+    return <OfflineNotice />
+    
+  }
+      return (
          <div>
-
-               <Provider store={appStore}>
-                  <Header />
-                  <loginContext.Provider value={{userInfo:name, setName}}>
-                  <Outlet />
-                  </loginContext.Provider>
-                  <Footer />
-               </Provider>
-          
-            
-
+             <Provider store={appStore}>
+               {/* Always show header/footer */}
+               <Header />
+               
+               {/* Only body content changes based on connection */}
+               {!isOnline ? (
+                 <div className="pt-48 pb-32">
+                 <h1>You're offline,Please check the Internet Connection!!!!</h1>
+             </div>
+               ) : (
+                 <Outlet /> // Your normal content
+               )}
+               
+               <Footer />
+             </Provider>
          </div>
-
-   );
-};
+       );
+     };
+   
 
 // Defining routes
 const approuter = createBrowserRouter([
@@ -63,26 +65,18 @@ const approuter = createBrowserRouter([
       children: [
          { path: '/', element: <Body /> },
          { path: '/search', element: <Search /> },
-         { path: '/about', element: <About /> },
          { path: '/offers', element: <Offers /> },
-         { path: '/cart', element: <Cart /> },
+         { path: '/cart', element: 
+         <Suspense  fallback={<Shimmer />}>
+          <Cart />
+         </Suspense> 
+        },
          { path: '/restuarantcards/:resId', element: <RestuarantMenu /> },
-         { path: '/login', element: <Login /> },
-         { path: '/logout', element: <Logout /> },
-         { path: '/user', element: <UserClass /> },
          {path:'/help',element:<Help />},
          {path: '/signin',element:<SignIn />},
-         {path: '/sample',element:<Sample />},
-         {
-            path: '/grocery',
-            element: (
-               // <Suspense  fallback={<h1>Loading...</h1>}>
-                 <Grocery />
-               // /* </Suspense> */
-            ),
-         },
+         {path: '/demo',element:<Demo />},
       ],
-      errorElement: <Error />,
+         errorElement: <Error />,
    },
 ]);
 

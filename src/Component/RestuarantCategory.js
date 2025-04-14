@@ -1,23 +1,20 @@
 import ItemCategoryList from "./ItemCategoryList";
-import {useState} from "react";
-import { useSelector} from "react-redux";
 
 
-const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
-    const resCategory=useSelector((store)=>store.resMenufilter.resCategory);
-    
-        const HandleClick=(index)=>{
+
+const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title,resCategory})=>{
+ 
+     const HandleClick=(index)=>{
         setShowIndex((prevIndex)=>{
         return prevIndex==index ? null: index;
       })
     }
-
+    
     const categoryLength=itemCards?.filter((c)=>{
         if(resCategory.includes(c.card.info.itemAttribute.vegClassifier) || resCategory.includes(c?.card?.info?.ribbon?.text)){
             return c;
-        }}).length;
+        }}).length || 0;
 
-        if(categoryLength>0){
             return(
 
                 <div>
@@ -35,9 +32,11 @@ const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
                     </div>
         
                     {/*accordian body*/}
+
+
         
                     <div className="my-4 text-left  dark:bg-gray-800 text-black dark:text-white border-y-4">
-                        {showItems && itemCards.map((c)=>{
+                        {showItems && itemCards && itemCards.map((c)=>{
 
                             // console.log(c);
                             
@@ -57,7 +56,7 @@ const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title})=>{
            
                 </div>
             )
-        }
+    
 
     
 }

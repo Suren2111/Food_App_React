@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 
 const useOnlineStatus=()=>{
     
-    const [onlineStatus,setOnlineStatus]=useState(true);
-    // console.log(onlineStatus+"hooks");
+    const [onlineStatus, setOnlineStatus] = useState(navigator.onLine);
     useEffect(()=>{
         window.addEventListener("online",()=>{
             setOnlineStatus(true);
