@@ -70,7 +70,10 @@ const Body = () => {
                     async function getCityName(lat, lon) {
                         try {
                             const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                            //Ladhak city o-ordinates
+                            //const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=34.209515&lon=77.615112`);
                             const data = await response.json();
+                            // console.log(data)
                             setLocation(data.address.city);
                         } catch (error) {
                             console.error("Error fetching city:", error);

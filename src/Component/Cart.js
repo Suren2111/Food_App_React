@@ -104,7 +104,7 @@ const Cart=()=>{
                                
                                 <div className="flex justify-between pt-2">
                                 <h1 className="pl-4 text-lg font-light">Total Amount</h1>
-                                <h1 className="pr-4 text-lg">₹{totalPrice-Math.round((totalPrice*10)/100)+49}</h1>
+                                <h1 className="pr-4 text-lg">₹{Math.round(totalPrice-Math.round((totalPrice*10)/100)+49)}</h1>
                                 </div>
                                
                                 

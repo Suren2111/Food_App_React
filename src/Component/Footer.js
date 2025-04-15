@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 const Footer=() =>{
    return(
-   <div className="p-5 m-5 flex justify-between border-t-2 border-b-2">
+   <div className="p-5 m-5 flex justify-between border-t-2 border-b-2 dark:bg-gray-800 dark:text-white pt-32">
      <div>
       <Link to={"/"}>
       <h1 className="p-3 my-3 mx-8 text-4xl text-red-600 font-bold">DishFly</h1>
