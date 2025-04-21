@@ -10,7 +10,7 @@ export const Carousel_URL="https://media-assets.swiggy.com/swiggy/image/upload/f
 
 export const Offline_LOGO_URL="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToQpSDJogHe89HWQjvtVTaFTzeX2HJtFdvYg&s"
 
-export const chennai_URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+export const chennai_URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0843007&lng=80.2704622&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 
 export const mumbai_URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 
@@ -20,6 +20,3 @@ export const delhi_URL="https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7
 
 
 
-// https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9005743&lng=80.0931249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
-
-// https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING

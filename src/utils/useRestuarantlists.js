@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 
 const useRestuarantlists=(RES_API)=>{
     const[res,setRes]=useState([]);
+    // console.log(res);
     useEffect(()=>{
         fetchData(RES_API);
     },[RES_API])  
@@ -11,13 +12,19 @@ const useRestuarantlists=(RES_API)=>{
 
         const data = await fetch("https://thingproxy.freeboard.io/fetch/" + RES_API);   
         const jsondata=await data.json();
-        setRes(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        if(jsondata?.data?.cards[0]?.card?.card?.title==="Location Unserviceable"){
+            setRes("Location Unserviceable")
+        }
+        else{
+            setRes(jsondata.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        }
+      
        
     }
 
 
 
-    return res
+    return res;
 }
 
 export default useRestuarantlists;

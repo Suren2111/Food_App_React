@@ -18,6 +18,7 @@ import Shimmer from './Component/Shimmer';
 import OfflineNotice from './Component/OfflineNotice';
 import useOnlineStatus from './utils/useOnlineStatus';
 import Demo from './Component/Demo';
+import Sample from './Component/Sample';
 const Cart = lazy(() => import('./Component/Cart'));
 const Applayout = () => {
    const isOnline = useOnlineStatus();
@@ -75,6 +76,7 @@ const approuter = createBrowserRouter([
          {path:'/help',element:<Help />},
          {path: '/signin',element:<SignIn />},
          {path: '/demo',element:<Demo />},
+         {path: '/sample',element:<Sample />},
       ],
          errorElement: <Error />,
    },
