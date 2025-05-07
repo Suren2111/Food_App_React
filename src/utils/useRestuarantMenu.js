@@ -3,7 +3,7 @@ import {useState} from "react";
 import { MENU_API } from "../utils/constants";
 
 const useRestuarantMenu=(resId)=>{
-     const[resDetails,setResDetails]=useState([]);
+     const[resDetails,setResDetails]=useState(null);
      useEffect(()=>{
         fetchdata();
      },[])

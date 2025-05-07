@@ -2,7 +2,12 @@ import { CDN_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItems } from "../utils/cartSlice";
 import { addPrice,removePrice } from "../utils/cartSlice";
+
+
+
+
 const CartItem=({items})=>{
+    
     const{imageId,name}=items?.card?.info;
     const price=(items.card.info.price || items.card.info.defaultPrice)/100;
     const itemCount=items.count;
@@ -24,6 +29,8 @@ const CartItem=({items})=>{
     const increaseItemCount=(price,name)=>{
         dispatch(addPrice({price,name}))
     }
+
+
     return(
         <div className="pt-4">
             
@@ -46,6 +53,8 @@ const CartItem=({items})=>{
         </div>
        
     )
+
+
 }
 
 export default CartItem;

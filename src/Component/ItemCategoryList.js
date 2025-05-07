@@ -16,7 +16,7 @@ const ItemCategoryList=(props)=>{
           // Hide after 3 seconds
           setTimeout(() => {
               setShowPopup(false);
-          }, 1500);
+          }, 1000);
 
 
     }
@@ -26,7 +26,7 @@ const ItemCategoryList=(props)=>{
         <div>
         <div className="flex justify-between my-4 font-bold">
        <span>{items?.card?.info?.name}</span>
-        <img src={CDN_URL+items?.card?.info?.imageId} className="w-28"></img>
+        <img src={CDN_URL+items?.card?.info?.imageId} className="w-28" alt={items?.card?.info?.name}></img>
         </div>
         </div>
 
@@ -37,7 +37,7 @@ const ItemCategoryList=(props)=>{
           
         </div>
         
-        <h1 className="my-4">⭐</h1>
+        {/* <h1 className="my-4">⭐</h1> */}
         </div>
         <p className="my-4 text-sm">{items?.card?.info?.description}</p>
          {/* Popup Notification */}

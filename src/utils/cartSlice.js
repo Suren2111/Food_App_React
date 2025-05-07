@@ -47,7 +47,6 @@ const cartSlice=createSlice({
 
             const price=JSON.parse(localStorage.getItem("price")) || 0;
             const updatedPrice=price-action.payload.totalPrice;
-            console.log(price+" "+updatedPrice)
             localStorage.setItem("price",JSON.stringify(updatedPrice)); 
 
             

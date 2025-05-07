@@ -1,7 +1,6 @@
 import RestuarantCategory from "./RestuarantCategory";
 import { useState } from "react";
-const NestedRestuarantCategory=({cards,resCategory})=>{
-     const [showIndex,setShowIndex]=useState(null);
+const NestedRestuarantCategory=({cards,resCategory,setIsActiveCategory,isActiveCategory})=>{
     return(
         <div className="">
             {
@@ -10,17 +9,19 @@ const NestedRestuarantCategory=({cards,resCategory})=>{
             }
              {
                 
-                cards?.card?.card?.categories.map((c,index)=>{
+                cards?.card?.card?.categories?.map((c)=>{
+
+                    // console.log(c);
                     return(
                         < RestuarantCategory 
-                         key={c?.title}
-                         itemCards={c?.itemCards}
-                         showItems={index===showIndex ? true : false}
-                         setShowIndex={setShowIndex}
-                         index={index}
-                         title={c?.title}
-                         resCategory={resCategory}
-                />
+                        key={c?.title}
+                        itemCards={c?.itemCards}
+                        title={c?.title}
+                        resCategory={resCategory}
+                        isActive={isActiveCategory===c?.title ? true:false}
+                        setIsActiveCategory={setIsActiveCategory}
+                        uniqueId={c?.title}
+               />
                     )
                 })
             }

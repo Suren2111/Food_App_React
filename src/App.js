@@ -17,8 +17,6 @@ import SignIn from './Component/SignIn';
 import Shimmer from './Component/Shimmer';
 import OfflineNotice from './Component/OfflineNotice';
 import useOnlineStatus from './utils/useOnlineStatus';
-import Demo from './Component/Demo';
-import Sample from './Component/Sample';
 const Cart = lazy(() => import('./Component/Cart'));
 const Applayout = () => {
    const isOnline = useOnlineStatus();
@@ -74,9 +72,7 @@ const approuter = createBrowserRouter([
         },
          { path: '/restuarantcards/:resId', element: <RestuarantMenu /> },
          {path:'/help',element:<Help />},
-         {path: '/signin',element:<SignIn />},
-         {path: '/demo',element:<Demo />},
-         {path: '/sample',element:<Sample />},
+         {path: '/signin',element:<SignIn />}
       ],
          errorElement: <Error />,
    },

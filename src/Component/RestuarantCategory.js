@@ -1,19 +1,20 @@
 import ItemCategoryList from "./ItemCategoryList";
+import { useMemo } from "react";
 
+const RestuarantCategory=({itemCards,title,resCategory,isActive,setIsActiveCategory,uniqueId})=>{
 
-
-const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title,resCategory})=>{
- 
-     const HandleClick=(index)=>{
-        setShowIndex((prevIndex)=>{
-        return prevIndex==index ? null: index;
+     const HandleClick=()=>{
+        setIsActiveCategory((prevuniqueId)=>{
+        return prevuniqueId==uniqueId ? null: uniqueId;
       })
     }
     
-    const categoryLength=itemCards?.filter((c)=>{
-        if(resCategory.includes(c.card.info.itemAttribute.vegClassifier) || resCategory.includes(c?.card?.info?.ribbon?.text)){
-            return c;
-        }}).length || 0;
+        const filteredItems = useMemo(() => {
+            return itemCards?.filter((c) =>
+                resCategory.includes(c.card.info.itemAttribute.vegClassifier) ||
+                resCategory.includes(c?.card?.info?.ribbon?.text)
+            ) || [];
+        }, [itemCards, resCategory]);
 
             return(
 
@@ -21,13 +22,13 @@ const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title,resCateg
                      
                     {/*acoordian title */}
         
-                    <div  className="flex justify-between cursor-pointer font-semibold" onClick={()=>HandleClick(index)}>
+                    <div  className="flex justify-between cursor-pointer font-semibold" onClick={()=>HandleClick()}>
                     {
-                       <span className="font-bold text-lg">{title} ({categoryLength|| 0})</span>
+                       <span className="font-bold text-lg">{title} ({filteredItems.length})</span>
                          
                     }
                     {
-                       <span>⬇</span> 
+                       <span>{isActive ? "⬆" : "⬇"}</span>
                     }
                     </div>
         
@@ -36,17 +37,16 @@ const RestuarantCategory=({itemCards,showItems,setShowIndex,index,title,resCateg
 
         
                     <div className="my-4 text-left  dark:bg-gray-800 text-black dark:text-white border-y-4">
-                        {showItems && itemCards && itemCards.map((c)=>{
+                        {isActive && filteredItems && filteredItems.map((c)=>{
 
                             // console.log(c);
                             
-                                if((resCategory.includes(c.card.info.itemAttribute.vegClassifier) || resCategory.includes(c?.card?.info?.ribbon?.text))){
-                                    return(
+                              return(
                                         
                                         <ItemCategoryList key={c?.card?.info?.id} items={c}/>
                                     )
                                     
-                                }
+                                
                                 
                             
                          })}

@@ -1,30 +1,32 @@
 import useRestuarantMenu from "../utils/useRestuarantMenu";
 import { useParams } from "react-router-dom";
 import RestuarantCategory from "./RestuarantCategory";
-import {useState,useEffect} from "react";
+import {useState} from "react";
 import NestedRestuarantCategory from "./NestedRestuarantCategory";
 import Shimmer from "./Shimmer";
+import { useMemo } from "react";
+
 
 const RestuarantMenu=()=>{
     const resid=useParams();
     const res=useRestuarantMenu(resid);
-    const [resDetails,setResDetails]=useState([]);
-    const [showIndex,setShowIndex]=useState(null); 
     const[resCategory,setResCategory]=useState(["VEG","NONVEG"]);
-    const [resBestSeller,setResBestSeller]=useState(false);
+    const[isActiveCategory,setIsActiveCategory]=useState(null);
 
-    useEffect(()=>{
-        const category_filter=res?.data?.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter((card)=>{
-            return( 
-                !["type.googleapis.com/swiggy.presentation.food.v2.MenuVegFilterAndBadge" , 'type.googleapis.com/swiggy.presentation.food.v2.MenuCarousel' , 'type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo' , 'type.googleapis.com/swiggy.presentation.food.v2.RestaurantAddress'].includes( card?.card?.card?.["@type"])
-                    )
-        })
-        setResDetails(category_filter)
+    const resDetails = useMemo(() => {
+        return res?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((card) => {
+            return ![
+                "type.googleapis.com/swiggy.presentation.food.v2.MenuVegFilterAndBadge",
+                "type.googleapis.com/swiggy.presentation.food.v2.MenuCarousel",
+                "type.googleapis.com/swiggy.presentation.food.v2.RestaurantLicenseInfo",
+                "type.googleapis.com/swiggy.presentation.food.v2.RestaurantAddress",
+            ].includes(card?.card?.card?.["@type"]);
+        });
+    }, [res]);
+    
 
-    },[res])
 
-
-if(res.length==0){
+if(!res){
 
    return(
       <Shimmer />
@@ -38,8 +40,14 @@ const{name,cuisines,areaName
 }=res?.data?.cards[2]?.card?.card.info
 
 
+
+
 const ShowResByCategory=(category)=>{
-setResCategory(category);
+
+   if(JSON.stringify(resCategory)!==JSON.stringify(category)){
+   setResCategory(category);
+   }
+
 
 }
 
@@ -67,7 +75,9 @@ setResCategory(category);
                  <button className="pr-2 border border-gray-400 px-2 mr-6 rounded-lg hover:bg-slate-300" onClick={()=>ShowResByCategory(["VEG","NONVEG"])}>All</button>
                  <button className="pr-2 border border-gray-400 px-2 mr-6 rounded-lg hover:bg-slate-300" onClick={()=>ShowResByCategory(["VEG"])}>Veg</button>
                  <button className="pr-2 border border-gray-400 px-2 mr-6 rounded-lg hover:bg-slate-300" onClick={()=>ShowResByCategory(["NONVEG"])}>Non-Veg</button>
-                 <button className="pr-2 border border-gray-400 px-2 mr-6 rounded-lg hover:bg-slate-300" onClick={()=>ShowResByCategory(["Bestseller"])}>BestSeller</button>
+                <button className="pr-2 border border-gray-400 px-2 mr-6 rounded-lg hover:bg-slate-300" onClick={()=>ShowResByCategory(["Bestseller"])}>BestSeller</button>
+
+              
         </div>
 
        
@@ -75,31 +85,35 @@ setResCategory(category);
 
             <div className="text-center w-6/12 mx-auto my-4 bg-gray-50  dark:bg-gray-800 text-black dark:text-white">
             {
-                resDetails && resDetails.map((c,index)=>{ 
+                resDetails && resDetails.map((c)=>{ 
+                   
                     if(c?.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"){
                         return(
 
                             <NestedRestuarantCategory 
                              cards={c}
-                             showItems={index===showIndex ? true : false}
-                             setShowIndex={setShowIndex}
-                             index={index}
-                             showIndex={showIndex}
                              key={c?.card?.card.title}
                              resCategory={resCategory}
+                             setIsActiveCategory={setIsActiveCategory}
+                             isActiveCategory={isActiveCategory}
                              />
-                        ) 
+
+                         )
+
+                        
                     } 
+
+
                 return(
                    
                 < RestuarantCategory 
                 key={c?.card?.card.title}
                 itemCards={c?.card?.card?.itemCards}
-                showItems={index===showIndex ? true : false}
-                setShowIndex={setShowIndex}
-                index={index}
                 title={c?.card?.card.title}
                 resCategory={resCategory}
+                isActive={isActiveCategory===c?.card?.card.title ? true:false}
+                setIsActiveCategory={setIsActiveCategory}
+                uniqueId={c?.card?.card.title}
                 />
 
                 ) 

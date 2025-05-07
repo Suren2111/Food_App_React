@@ -1,22 +1,23 @@
-import { useEffect, useState,useMemo,useCallback} from "react";
+import { useEffect, useState,useMemo,useCallback,memo} from "react";
 import useRestuarantlists from "../utils/useRestuarantlists";
 import RestuarantCards, { withPromotedLabel } from "./RestuarantCards";
 import Shimmer from "./Shimmer";
 import { chennai_URL,delhi_URL,mumbai_URL,bangalore_URL } from "../utils/constants";
 import NoLocation from "./NoLocation";
+const MemoizedRestaurantCard = memo(RestuarantCards);
+const MemoizedPromotedRestaurant = memo(withPromotedLabel(RestuarantCards));
 
 
 const Body = () => {
+
     const [resApi, setResApi] = useState(chennai_URL);
     const res = useRestuarantlists(resApi);
     const[isserviceAvailable,setIsServiceAvilable]=useState(false)
     const [resDetails,setResDetails]=useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const[location,setLocation]=useState("Chennai");
-    const PromotedRestuarant = withPromotedLabel(RestuarantCards);
-    // console.log("Body component re-rendered"+res+" "+isserviceAvailable+" "+resDetails+" "+isLoading+" "+location);
-    // console.log(res[0]==resDetails[0]);
-
+    // const PromotedRestuarant = withPromotedLabel(RestuarantCards);
+    const[value,setValue]=useState(0);
 
     useEffect(() => {
     if(res==="Location Unserviceable"){
@@ -95,7 +96,10 @@ const Body = () => {
                     async function getCityName(lat, lon) {
                         try {
                             const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                            //city name undefined:
+                            //const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=28.6139&lon=78.9629`);
                             const data = await response.json();
+                            console.log(data);
                             setLocation(data.address.city);
                         } catch (error) {
                             console.error("Error fetching city:", error);
@@ -108,12 +112,15 @@ const Body = () => {
                     
                 },
                 function (error) {
-                    console.log("Error: " + error.message);
+                    alert("Please enable the location"+ error.message)
+
+                    // console.log("Error: " + error.message);
                 },
                 
             );
         } else {
-            console.log("Geolocation is not available in this browser.");
+            alert("Geolocation is not available in this browser")
+            // console.log("Geolocation is not available in this browser.");
         }
     };
 
@@ -240,7 +247,7 @@ const handleBackToHome = () => {
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8 mx-8">
-                    {resDetails && resDetails.map((restuarant) => {
+                    {/* {resDetails && resDetails.map((restuarant) => {
                         return (
                             <div key={restuarant.info.id} data-testid="Restuarants">
                                 {restuarant.info.avgRating > 4.2 ? (
@@ -250,9 +257,18 @@ const handleBackToHome = () => {
                                 )}
                             </div>
                         );
-                    })}
+                    })} */}
+
+                    {resDetails?.map((restaurant) => (
+  restaurant.info.avgRating > 4.2 ? (
+    <MemoizedPromotedRestaurant key={restaurant.info.id} rescard={restaurant} />
+  ) : (
+    <MemoizedRestaurantCard key={restaurant.info.id} rescard={restaurant} />
+  )
+))}
                 </div>
             )}
+            
         </div>
     );
 };
