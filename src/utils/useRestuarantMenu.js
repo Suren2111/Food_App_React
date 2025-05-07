@@ -10,7 +10,7 @@ const useRestuarantMenu=(resId)=>{
 
      
      const fetchdata=async ()=>{
-        const resdata=await fetch("https://cors-anywhere.herokuapp.com/" + MENU_API+resId.resId);
+        const resdata=await fetch("https://dishfly.netlify.app/.netlify/functions/proxy" + MENU_API+resId.resId);
         const data=await resdata.json();
 
         setResDetails(data);
