@@ -9,9 +9,12 @@ const useRestuarantlists=(RES_API)=>{
 
 
     const fetchData= async (RES_API) =>{
-
-        const data = await fetch("https://thingproxy.freeboard.io/fetch/" + RES_API);   
+        const encodedUrl = encodeURIComponent(RES_API);
+        const data = await fetch("/.netlify/functions/menu?url=" + encodedUrl);
+        console.log(data);
+        // const data = await fetch("https://thingproxy.freeboard.io/fetch/" + RES_API); 
         const jsondata=await data.json();
+        console.log(jsondata)
         if(jsondata?.data?.cards[0]?.card?.card?.title==="Location Unserviceable"){
             setRes("Location Unserviceable")
         }
