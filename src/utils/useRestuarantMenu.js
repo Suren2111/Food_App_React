@@ -10,8 +10,9 @@ const useRestuarantMenu=(resId)=>{
 
      
      const fetchdata=async ()=>{
-      const resdata = await fetch("/.netlify/functions/menu?resId=" + MENU_API+resId.resId);
-      //  const resdata=await fetch("https://thingproxy.freeboard.io/fetch/" + MENU_API+resId.resId);
+      const resdata = await fetch("/.netlify/functions/proxy?url=" + encodeURIComponent(MENU_API+resId.resId));
+
+      // const resdata=await fetch("https://thingproxy.freeboard.io/fetch/" + MENU_API+resId.resId);
         const data=await resdata.json();
 
         setResDetails(data);
